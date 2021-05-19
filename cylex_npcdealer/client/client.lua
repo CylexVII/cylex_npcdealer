@@ -97,8 +97,8 @@ function sellFunction(vConfig, kConfig)
             end
         end
     end
-	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'drug_shop', {
-		title    = 'Eşya seç',
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'npc_sell', {
+		title    = _U('menu_default_title'),
 		align    = 'top-left',
 		elements = elements
     }, function(data, menu)
