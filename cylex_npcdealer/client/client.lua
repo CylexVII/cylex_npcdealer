@@ -69,9 +69,9 @@ function getQuantity(item)
 end
 
 function sellFunction(vConfig, kConfig)
-	ESX.UI.Menu.CloseAll()
-	local elements = {}
-	menuOpen = true
+    ESX.UI.Menu.CloseAll()
+    local elements = {}
+    menuOpen = true
     local itemConfig = itemsData
     for k, v in pairs(vConfig["items"]) do 
         if itemConfig[k] ~= nil then
@@ -97,10 +97,10 @@ function sellFunction(vConfig, kConfig)
             end
         end
     end
-	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'npc_sell', {
-		title    = _U('menu_default_title'),
-		align    = 'top-left',
-		elements = elements
+    ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'npc_sell', {
+	title    = _U('menu_default_title'),
+	align    = 'top-left',
+	elements = elements
     }, function(data, menu)
         ESX.UI.Menu.CloseAll()
         local amount = data.current.value
@@ -131,10 +131,10 @@ function sellFunction(vConfig, kConfig)
             ESX.UI.Menu.CloseAll()
             menuOpen = false
         end)
-	end, function(data, menu)
-		menu.close()
-		menuOpen = false
-	end)
+   end, function(data, menu)
+	menu.close()
+	menuOpen = false
+    end)
 end
 
 Citizen.CreateThread(function()
