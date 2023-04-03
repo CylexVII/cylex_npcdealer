@@ -1,12 +1,23 @@
 ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
+CreateThread(function()
+    while ESX == nil or ESX.Items == nil or next(ESX.Items) == nil do 
+        TriggerEvent('esx:getSharedObject', function(obj) 
+            ESX = obj 
+        end)
+        Wait(1000)
+    end
+
+    GlobalState.ItemList = ESX.Items
+end)
+
 Citizen.CreateThread(function()
-    print("^7[^1cylex_npcdealer^7] - ^2Aktif! ^0") 
+    print("^7[^1cylex_npcdealer^7] - ^2Started! ^0") 
 end)
 
 ESX.RegisterServerCallback('cylex_npcdealer:server:getData', function(source, cb)
-    cb(Config, ESX.Items)
+    cb(Config)
 end)
 
 ESX.RegisterServerCallback('cylex_npcdealer:server:getCount', function(source, cb, item)

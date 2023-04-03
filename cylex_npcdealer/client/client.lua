@@ -4,13 +4,18 @@ local blips, peds, itemsData = {}, {}, {}
 local menuOpen = false
 Citizen.CreateThread(function()
     TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-    ESX.TriggerServerCallback('cylex_npcdealer:server:getData', function(data, SitemsData)
-        Config = data
-        itemsData = SitemsData
-    end)
     while ESX.GetPlayerData().job == nil do
         Citizen.Wait(100)
     end
+    ESX.TriggerServerCallback('cylex_npcdealer:server:getData', function(data)
+        Config = data
+    end)
+
+    CreateThread(function()
+        while (GlobalState.ItemList) == nil do Wait(500) end
+        while next(GlobalState.ItemList) == nil do Wait(500) end
+        itemsData = GlobalState.ItemList
+    end)
     PlayerData = ESX.GetPlayerData()
 end)
 
